@@ -1,0 +1,58 @@
+<h2>reactive-forms</h2>
+<!-- <label>
+    Name:
+    <input type="text" [formControl]="name" placeholder="please input name">
+</label>
+<br>
+<button (click)="onClick()">按钮</button>
+<p>{{name.valueChanges | async}}</p>
+<p>{{name.value}}</p> -->
+
+<div class="container">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>
+                First Name:
+                <input type="text" formControlName="firstName" required class="form-control">
+            </label>
+
+            <label>
+                Last Name:
+                <input type="text" formControlName="lastName" class="form-control">
+            </label>
+        </div>
+
+        <div formGroupName="address" class="form-group">
+            <h3>Address</h3>
+            <label>
+                Street:
+                <input type="text" formControlName="street" class="form-control">
+            </label>
+
+            <label>
+                City:
+                <input type="text" formControlName="city" class="form-control">
+            </label>
+
+            <label>
+                Zip:
+                <input type="text" formControlName="zip" class="form-control">
+            </label>
+        </div>
+
+        <div formArrayName="aliases" class="form-group">
+            <h3>Aliases</h3>
+            <div *ngFor="let address of aliases.controls; let i=index">
+                <label>
+                    Alias:
+                    <input type="text" [formControlName]="i" class="form-control">
+                </label>
+            </div>
+        </div>
+        <button (click)="onClick()" class="btn">Add Alias</button><br>
+        <button type="submit" [disabled]="!profileForm.valid" class="btn btn-success">Submit</button>
+    </form>
+    <br/>
+    <p>{{profileForm.value | json}}</p>
+    <p>Form Status: {{ profileForm.status }}</p>
+</div>
