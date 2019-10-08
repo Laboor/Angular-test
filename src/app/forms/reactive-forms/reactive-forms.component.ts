@@ -25,12 +25,6 @@ export class ReactiveFormsComponent implements OnInit {
     ])
   });
 
-  // address = {
-  //   street: 'Wall',
-  //   city: 'new york',
-  //   zip: '550001'
-  // };
-
   get aliases() {
     return this.profileForm.get('aliases') as FormArray;
   }
