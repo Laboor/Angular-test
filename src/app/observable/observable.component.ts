@@ -27,6 +27,7 @@ export class ObservableComponent implements OnInit {
     // this.myObserverService.getValue().subscribe((res) => console.log(res));
     this.myObserverService.sequence.subscribe(this.myObserver);
     setTimeout(() => {
+      console.log('123');
       this.myObserverService.sequence.subscribe(this.myObserver);
     }, 500);
   }
