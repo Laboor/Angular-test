@@ -7,12 +7,14 @@ import { ReactiveFormsComponent } from './forms/reactive-forms/reactive-forms.co
 import { TemplateDrivenFormsComponent } from './forms/template-driven-forms/template-driven-forms.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { ObservableComponent } from './observable/observable.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReactiveFormsComponent,
-    TemplateDrivenFormsComponent
+    TemplateDrivenFormsComponent,
+    ObservableComponent
   ],
   imports: [
     BrowserModule,
