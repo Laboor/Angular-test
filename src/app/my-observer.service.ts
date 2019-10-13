@@ -27,6 +27,7 @@ export class MyObserverService {
     }
 
     doSequence(seq, 0);
+
     return {unsubscribe() {
       clearTimeout(timerId);
     }};

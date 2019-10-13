@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, fromEvent } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { MyObserverService } from '../my-observer.service';
 
 @Component({
@@ -24,12 +25,16 @@ export class ObservableComponent implements OnInit {
     // this.ob.subscribe((res) => {
     //   this.value = res;
     // });
-    // this.myObserverService.getValue().subscribe((res) => console.log(res));
-    this.myObserverService.sequence.subscribe(this.myObserver);
-    setTimeout(() => {
-      console.log('123');
-      this.myObserverService.sequence.subscribe(this.myObserver);
-    }, 500);
+    // this.myObserverService.getValue().pipe(
+    //   map(res => res + 10),
+    //   filter(res => res === 11)
+    //   ).subscribe(res => console.log(res));
+    this.myObserverService.sequence.pipe(
+      map(res => this.value = res)
+    ).subscribe(this.myObserver);
+    // setTimeout(() => {
+    //   this.myObserverService.sequence.subscribe(this.myObserver);
+    // }, 500);
   }
 
   ngOnInit() {
