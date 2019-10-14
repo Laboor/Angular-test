@@ -29,13 +29,17 @@ export class ObservableComponent implements OnInit {
     //   map(res => res + 10),
     //   filter(res => res === 11)
     //   ).subscribe(res => console.log(res));
-    this.myObserverService.sequence.pipe(
-      map(res => this.value = res)
-    ).subscribe(this.myObserver);
+    // this.myObserverService.sequence.pipe(
+    //   map(res => this.value = res)
+    // ).subscribe(this.myObserver);
     // setTimeout(() => {
     //   this.myObserverService.sequence.subscribe(this.myObserver);
     // }, 500);
+    // console.log('begin');
+    // this.myObserverService.observable1.subscribe(res => console.log(res));
+    // console.log('end');
   }
+
 
   ngOnInit() {
     // this.ob = new Observable((observer) => {
