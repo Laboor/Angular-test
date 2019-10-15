@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, from } from 'rxjs';
+import { Observable, of, from, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +7,7 @@ import { Observable, of, from } from 'rxjs';
 export class MyObserverService {
   constructor() { }
   sequence = new Observable<number>(this.sequenceSubscriber);
+  mySubject = new Subject<number>();
 
   getValue(): Observable<number> {
     return from([1, 2, 3]);
