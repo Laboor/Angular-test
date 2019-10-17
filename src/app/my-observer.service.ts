@@ -33,4 +33,14 @@ export class MyObserverService {
       clearTimeout(timerId);
     }};
   }
+
+  subscriber1(observer) {
+    observer.next(1);
+    observer.next(2);
+    setTimeout(() => {
+      observer.next(3);
+    }, 2000);
+
+    return { unsubscribe() {} };
+  }
 }

@@ -8,13 +8,15 @@ import { TemplateDrivenFormsComponent } from './forms/template-driven-forms/temp
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ObservableComponent } from './observable/observable.component';
+import { DIComponent } from './di/di.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReactiveFormsComponent,
     TemplateDrivenFormsComponent,
-    ObservableComponent
+    ObservableComponent,
+    DIComponent
   ],
   imports: [
     BrowserModule,

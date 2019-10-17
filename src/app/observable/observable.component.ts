@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, fromEvent } from 'rxjs';
 import { filter, map, delay, multicast } from 'rxjs/operators';
 import { MyObserverService } from '../my-observer.service';
+import { DiService } from '../di/di.service';
 
 @Component({
   selector: 'app-observable',
@@ -10,11 +11,13 @@ import { MyObserverService } from '../my-observer.service';
 })
 export class ObservableComponent implements OnInit {
   constructor(
-    private myObserverService: MyObserverService
+    private myObserverService: MyObserverService,
+    private diService: DiService
   ) { }
 
   ob: Observable<string>;
   value: any;
+  user: any;
 
   multicasted = this.myObserverService.getValue().pipe(
     multicast(this.myObserverService.mySubject)
@@ -46,18 +49,11 @@ export class ObservableComponent implements OnInit {
     // };
 
     // this.myObserverService.getValue().subscribe(this.myObserverService.mySubject);
-
-
-    this.multicasted.connect();
   }
 
+
   ngOnInit() {
-    this.multicasted.subscribe((res) => {
-      console.log('A:', res);
-    });
-    this.multicasted.subscribe((res) => {
-      console.log('B:', res);
-    });
+    this.user = this.diService.user;
     // this.myObserverService.mySubject.subscribe((res) => {
     //   console.log(res);
     // });
