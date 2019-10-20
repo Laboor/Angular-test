@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional, Host } from '@angular/core';
 import { Observable, fromEvent } from 'rxjs';
 import { filter, map, delay, multicast } from 'rxjs/operators';
 import { MyObserverService } from '../my-observer.service';
@@ -7,11 +7,14 @@ import { DiService } from '../di/di.service';
 @Component({
   selector: 'app-observable',
   templateUrl: './observable.component.html',
-  styleUrls: ['./observable.component.css']
+  styleUrls: ['./observable.component.css'],
+  // providers: [DiService]
 })
 export class ObservableComponent implements OnInit {
   constructor(
+    @Host()
     private myObserverService: MyObserverService,
+    @Optional()
     private diService: DiService
   ) { }
 
@@ -32,10 +35,10 @@ export class ObservableComponent implements OnInit {
     // this.ob.subscribe((res) => {
     //   this.value = res;
     // });
-    // this.myObserverService.getValue().pipe(
-    //   map(res => res + 10),
-    //   filter(res => res === 11)
-    //   ).subscribe(res => console.log(res));
+    this.myObserverService.getValue().pipe(
+      map(res => res + 10),
+      filter(res => res === 11)
+      ).subscribe(res => console.log(res));
     // this.myObserverService.getValue().pipe(
     //   map(res => this.value = res),
     //   multicast(this.myObserverService.mySubject)
@@ -53,7 +56,7 @@ export class ObservableComponent implements OnInit {
 
 
   ngOnInit() {
-    this.user = this.diService.user;
+    // this.user = this.diService.user;
     // this.myObserverService.mySubject.subscribe((res) => {
     //   console.log(res);
     // });
