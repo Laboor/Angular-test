@@ -5,19 +5,16 @@ import { Parent } from '../parent';
 @Component({
   selector: 'app-di-child',
   templateUrl: './di-child.component.html',
-  styleUrls: ['./di-child.component.css'],
-  providers: [{
-    provide: Parent,
-    useExisting: forwardRef(() => DiChildComponent)
-  }]
+  styleUrls: ['./di-child.component.css']
 })
 export class DiChildComponent implements OnInit {
 
   constructor(
-    @Optional() private parent: Parent
+    @Optional() public parent: Parent
   ) { }
 
   onClick() {
+    // this.parent.foo();
     console.log(this.parent.componentName);
   }
 

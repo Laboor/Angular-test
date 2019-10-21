@@ -4,6 +4,7 @@ import { ReactiveFormsComponent } from './forms/reactive-forms/reactive-forms.co
 import { TemplateDrivenFormsComponent } from './forms/template-driven-forms/template-driven-forms.component';
 import { ObservableComponent } from './observable/observable.component';
 import { DIComponent } from './di/di.component';
+import { HttpClientComponent } from './http-client/http-client.component';
 
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
   { path: 'r-forms', component: ReactiveFormsComponent },
   { path: 'td-forms', component: TemplateDrivenFormsComponent },
   { path: 'observable', component: ObservableComponent },
-  { path: 'di', component: DIComponent }
+  { path: 'di', component: DIComponent },
+  { path: 'http', component: HttpClientComponent }
 ];
 
 @NgModule({

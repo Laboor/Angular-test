@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { ObservableComponent } from './observable/observable.component';
 import { DIComponent } from './di/di.component';
 import { DiChildComponent } from './di/di-child/di-child.component';
+import { HttpClientComponent } from './http-client/http-client.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,13 +20,15 @@ import { DiChildComponent } from './di/di-child/di-child.component';
     TemplateDrivenFormsComponent,
     ObservableComponent,
     DIComponent,
-    DiChildComponent
+    DiChildComponent,
+    HttpClientComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

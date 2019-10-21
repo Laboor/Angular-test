@@ -1,4 +1,4 @@
-import { Component, OnInit, InjectionToken, Inject, Optional, ViewChild } from '@angular/core';
+import { Component, OnInit, InjectionToken, Inject, Optional, ViewChild, forwardRef } from '@angular/core';
 import { DiService } from './di.service';
 import { NewDiService } from './new-di.service';
 import { ApiConfigService } from '../api-config.service';
@@ -18,17 +18,17 @@ const API_URL = new InjectionToken<any>('');
     {provide: DiService, useClass: NewDiService},
     {provide: DiService, useExisting: NewDiService},
     {provide: ApiConfigService, useValue: ApiConfig},
-    {provide: API_URL, useValue: ApiConfig}
+    {provide: API_URL, useValue: ApiConfig},
+    {provide: Parent, useExisting: forwardRef(() => DIComponent)}
   ]
 })
 export class DIComponent implements OnInit, Parent {
-  @ViewChild(DiChildComponent, {static: true}) diChildComponent
+  @ViewChild(DiChildComponent, {static: true}) diChildComponent;
   constructor(
     private diService: DiService,
     private newDiService: NewDiService,
     private apiConfigService: ApiConfigService,
-    @Inject(API_URL) private api: any,
-    
+    @Inject(API_URL) private api: any
   ) {
     this.newDiService.user.name = 'Albert';
     console.log('old:', this.diService.user);
@@ -37,7 +37,7 @@ export class DIComponent implements OnInit, Parent {
   }
   user: any;
   apiUrl: string;
-  componentName: 'DIComponent'
+  componentName = 'DIComponent';
 
   foo() {
     console.log('父组件调用成功');
