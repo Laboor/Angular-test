@@ -1,8 +1,10 @@
-import { Component, OnInit, InjectionToken, Inject } from '@angular/core';
+import { Component, OnInit, InjectionToken, Inject, Optional, ViewChild } from '@angular/core';
 import { DiService } from './di.service';
 import { NewDiService } from './new-di.service';
 import { ApiConfigService } from '../api-config.service';
 import { ApiConfig } from '../api-config';
+import { DiChildComponent } from './di-child/di-child.component';
+import { Parent } from './parent';
 
 const API_URL = new InjectionToken<any>('');
 
@@ -19,13 +21,14 @@ const API_URL = new InjectionToken<any>('');
     {provide: API_URL, useValue: ApiConfig}
   ]
 })
-export class DIComponent implements OnInit {
-
+export class DIComponent implements OnInit, Parent {
+  @ViewChild(DiChildComponent, {static: true}) diChildComponent
   constructor(
     private diService: DiService,
     private newDiService: NewDiService,
     private apiConfigService: ApiConfigService,
-    @Inject(API_URL) private api: any
+    @Inject(API_URL) private api: any,
+    
   ) {
     this.newDiService.user.name = 'Albert';
     console.log('old:', this.diService.user);
@@ -34,11 +37,17 @@ export class DIComponent implements OnInit {
   }
   user: any;
   apiUrl: string;
+  componentName: 'DIComponent'
+
+  foo() {
+    console.log('父组件调用成功');
+  }
 
   onClick() {
     this.diService.user.name = 'GG';
     this.user = this.diService.user;
     this.apiUrl = this.api.url;
+    this.diChildComponent.childFoo();
   }
 
   ngOnInit() {

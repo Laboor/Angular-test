@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ObservableComponent } from './observable/observable.component';
 import { DIComponent } from './di/di.component';
+import { DiChildComponent } from './di/di-child/di-child.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { DIComponent } from './di/di.component';
     ReactiveFormsComponent,
     TemplateDrivenFormsComponent,
     ObservableComponent,
-    DIComponent
+    DIComponent,
+    DiChildComponent
   ],
   imports: [
     BrowserModule,

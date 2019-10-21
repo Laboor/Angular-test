@@ -1,0 +1,15 @@
+<body>
+    <button onclick="onClick()">button</button>
+    <script>
+        myFunc = function* () {
+            yield 1;
+            yield 2;
+            yield 3;
+            return 4;
+        }
+        let generator = myFunc();
+        function onClick() {
+            console.log(generator.next());
+        }
+    </script>
+</body>
