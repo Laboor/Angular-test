@@ -1,15 +1,21 @@
 <body>
     <button onclick="onClick()">button</button>
     <script>
-        myFunc = function* () {
-            yield 1;
-            yield 2;
-            yield 3;
-            return 4;
-        }
-        let generator = myFunc();
+        // myFunc = function* () {
+        //     yield 1;
+        //     yield 2;
+        //     yield 3;
+        //     return 4;
+        // }
+        // let generator = myFunc();
         function onClick() {
-            console.log(generator.next());
+            fetch('http://localhost:3000/heroes/post', {
+                method: 'POST'
+            }).then(res => console.log(res))
+
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://localhost:3000/heroes/post');
+            xhr.send(123);
         }
     </script>
 </body>

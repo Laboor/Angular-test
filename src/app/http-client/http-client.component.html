@@ -1,5 +1,15 @@
 <p>http-client works!</p>
 <p>{{config | json}}</p>
 <p>{{headers | json}}</p>
-<button (click)="onClick()">GET HEROES</button>
+<button (click)="getHeroes()">GET HEROES</button>
 <p>{{heroes | json}}</p>
+<label>
+  Hero id:
+  <input name="id" [(ngModel)]="hero.id">
+</label>
+<label>
+  Hero name:
+  <input name="name" [(ngModel)]="hero.name">
+</label>
+<button (click)="postHero()">POST HERO</button>
+<p>{{hero | json}}</p>

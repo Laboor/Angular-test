@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConfigService } from './config.service';
 import { Config } from './config';
 import { MyHero } from '../my-hero';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-http-client',
@@ -17,12 +18,22 @@ export class HttpClientComponent implements OnInit {
   config: Config;
   headers: any;
   heroes: MyHero[];
+  hero: MyHero;
 
   showHeroes() {
     this.configService.getHeroes()
       .subscribe(
-        resp => this.heroes = resp.body
-      )
+        resp => this.heroes = resp.body,
+        error => console.error(error),
+        () => console.log('API call success')
+      );
+  }
+
+  showPostHero() {
+    this.configService.addHero(this.hero)
+      .subscribe(
+        hero => this.heroes.push(hero)
+      );
   }
 
   showConfig() {
@@ -45,13 +56,21 @@ export class HttpClientComponent implements OnInit {
       );
   }
 
-  onClick() {
+  getHeroes() {
     this.showHeroes();
+  }
+
+  postHero() {
+    this.showPostHero();
   }
 
   ngOnInit() {
     // this.showConfig();
     this.showConfigResponse();
+    this.hero = {
+      id: null,
+      name: null
+    };
   }
 
 }
