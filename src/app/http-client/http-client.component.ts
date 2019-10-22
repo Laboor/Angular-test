@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from './config.service';
 import { Config } from './config';
+import { MyHero } from '../my-hero';
 
 @Component({
   selector: 'app-http-client',
@@ -15,6 +16,14 @@ export class HttpClientComponent implements OnInit {
 
   config: Config;
   headers: any;
+  heroes: MyHero[];
+
+  showHeroes() {
+    this.configService.getHeroes()
+      .subscribe(
+        resp => this.heroes = resp.body
+      )
+  }
 
   showConfig() {
     this.configService.getConfig()
@@ -34,6 +43,10 @@ export class HttpClientComponent implements OnInit {
           console.log(resp, this.headers);
         }
       );
+  }
+
+  onClick() {
+    this.showHeroes();
   }
 
   ngOnInit() {
