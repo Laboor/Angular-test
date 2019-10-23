@@ -16,12 +16,11 @@ export class ConfigService {
   configUrl = 'assets/config.json';
   heroesApi = 'http://localhost:3000/heroes';
   postHeroApi = 'http://localhost:3000/heroes/post';
+  deleteHeroApi = 'http://localhost:3000/heroes/delete'
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Metods': 'POST, PUT, DELETE'
+      // 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
     })
   };
 
@@ -29,15 +28,15 @@ export class ConfigService {
   getHeroes() {
     return this.http.get<MyHero[]>(
       this.heroesApi,
-      {observe: 'response'}
-      ).pipe(
-        retry(3),
-        tap(
-          data => console.log(data),
-          error => console.log(error)
-        ),
-        catchError(this.handleError)
-      );
+      { observe: 'response' }
+    ).pipe(
+      retry(3),
+      tap(
+        data => console.log(data),
+        error => console.log(error)
+      ),
+      catchError(this.handleError)
+    );
   }
 
   getConfig() {
@@ -47,16 +46,25 @@ export class ConfigService {
   getConfigResponse() {
     return this.http.get<Config>(
       this.configUrl,
-      {observe: 'response'}
+      { observe: 'response' }
     );
   }
 
   // POST method
-  addHero(hero: MyHero) {
+  postHero(hero: MyHero) {
     return this.http.post<MyHero>(this.postHeroApi, hero, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
+  }
+
+  // DELETE method
+  deleteHero(id: number) {
+    const url = `${this.heroesApi}/${id}`
+    return this.http.delete(this.deleteHeroApi, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      )
   }
 
   // error handle

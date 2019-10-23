@@ -20,7 +20,7 @@ export class HttpClientComponent implements OnInit {
   heroes: MyHero[];
   hero: MyHero;
 
-  showHeroes() {
+  clickGetHeroes() {
     this.configService.getHeroes()
       .subscribe(
         resp => this.heroes = resp.body,
@@ -29,11 +29,18 @@ export class HttpClientComponent implements OnInit {
       );
   }
 
-  showPostHero() {
-    this.configService.addHero(this.hero)
+  clickPostHero() {
+    this.configService.postHero(this.hero)
       .subscribe(
         hero => this.heroes.push(hero)
       );
+  }
+
+  clickDeleteHero() {
+    this.configService.deleteHero(5)
+      .subscribe(
+        data => console.log(data)
+      )
   }
 
   showConfig() {
@@ -56,17 +63,9 @@ export class HttpClientComponent implements OnInit {
       );
   }
 
-  getHeroes() {
-    this.showHeroes();
-  }
-
-  postHero() {
-    this.showPostHero();
-  }
-
   ngOnInit() {
     // this.showConfig();
-    this.showConfigResponse();
+    // this.showConfigResponse();
     this.hero = {
       id: null,
       name: null
