@@ -62,6 +62,13 @@ export class HttpClientComponent implements OnInit {
 
   postHero() {
     this.showPostHero();
+    // fetch('http://localhost:3000/heroes/post', {
+    //   method: 'POST'
+    // }).then(res => console.log(res));
+
+    // const xhr = new XMLHttpRequest();
+    // xhr.open('POST', 'http://localhost:3000/heroes/post');
+    // xhr.send();
   }
 
   ngOnInit() {

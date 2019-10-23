@@ -53,9 +53,9 @@ export class ConfigService {
 
   // POST method
   addHero(hero: MyHero) {
-    return this.http.post<MyHero>(this.postHeroApi, hero, this.httpOptions)
+    return this.http.post<MyHero>(this.postHeroApi, hero)
       .pipe(
-        catchError(this.handleError)
+        // catchError(this.handleError)
       );
   }
 
