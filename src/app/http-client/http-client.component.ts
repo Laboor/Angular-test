@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ConfigService } from './config.service';
 import { Config } from './config';
 import { MyHero } from '../my-hero';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-http-client',
@@ -20,19 +19,24 @@ export class HttpClientComponent implements OnInit {
   heroes: MyHero[];
   hero: MyHero;
 
-  showHeroes() {
+  clickGetHeroes() {
     this.configService.getHeroes()
       .subscribe(
-        resp => this.heroes = resp.body,
-        error => console.error(error),
-        () => console.log('API call success')
+        resp => this.heroes = resp.body
       );
   }
 
-  showPostHero() {
-    this.configService.addHero(this.hero)
+  clickPostHero() {
+    this.configService.postHero(this.hero)
       .subscribe(
-        hero => this.heroes.push(hero)
+        resp => this.hero = resp.body
+      );
+  }
+
+  clickDeleteHero() {
+    this.configService.deleteHero(5)
+      .subscribe(
+        data => console.log(data)
       );
   }
 
@@ -56,24 +60,9 @@ export class HttpClientComponent implements OnInit {
       );
   }
 
-  getHeroes() {
-    this.showHeroes();
-  }
-
-  postHero() {
-    this.showPostHero();
-    // fetch('http://localhost:3000/heroes/post', {
-    //   method: 'POST'
-    // }).then(res => console.log(res));
-
-    // const xhr = new XMLHttpRequest();
-    // xhr.open('POST', 'http://localhost:3000/heroes/post');
-    // xhr.send();
-  }
-
   ngOnInit() {
     // this.showConfig();
-    this.showConfigResponse();
+    // this.showConfigResponse();
     this.hero = {
       id: null,
       name: null

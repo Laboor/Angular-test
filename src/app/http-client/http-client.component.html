@@ -1,15 +1,19 @@
-<p>http-client works!</p>
-<p>{{config | json}}</p>
+<h2>HttpClient</h2>
+
+<label>
+  Hero ID:
+  <input class="form-control" name="id" [(ngModel)]="hero.id">
+</label>
+<label>
+  Hero Name:
+  <input class="form-control" name="name" [(ngModel)]="hero.name">
+</label>
+<br/>
+<!-- <p>{{hero | json}}</p> -->
+<button class="btn" (click)="clickGetHeroes()">GET HEROES</button>
+<button class="btn" (click)="clickPostHero()">POST HERO</button>
+<button class="btn" (click)="clickDeleteHero()">DELETE HERO</button>
+
+<!-- <p>{{config | json}}</p>
 <p>{{headers | json}}</p>
-<button (click)="getHeroes()">GET HEROES</button>
-<p>{{heroes | json}}</p>
-<label>
-  Hero id:
-  <input name="id" [(ngModel)]="hero.id">
-</label>
-<label>
-  Hero name:
-  <input name="name" [(ngModel)]="hero.name">
-</label>
-<button (click)="postHero()">POST HERO</button>
-<p>{{hero | json}}</p>
+<p>{{heroes | json}}</p> -->
