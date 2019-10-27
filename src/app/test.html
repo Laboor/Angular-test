@@ -9,13 +9,14 @@
         // }
         // let generator = myFunc();
         function onClick() {
-            fetch('http://localhost:3000/heroes/post', {
-                method: 'POST'
-            }).then(res => console.log(res))
+            fetch('http://localhost:3000/heroes/api/get?model=hero', {
+                method: 'GET'
+            }).then(response => response.json())
+            .then(res => console.log(res));
 
-            let xhr = new XMLHttpRequest();
-            xhr.open('POST', 'http://localhost:3000/heroes/post');
-            xhr.send(123);
+            // let xhr = new XMLHttpRequest();
+            // xhr.open('POST', 'http://localhost:3000/heroes/post');
+            // xhr.send(123);
         }
     </script>
 </body>

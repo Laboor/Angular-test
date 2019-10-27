@@ -14,8 +14,8 @@ export class ConfigService {
   ) { }
 
   configUrl = 'assets/config.json';
-  heroesApi = 'http://localhost:3000/heroes';
-  postHeroApi = 'http://localhost:3000/heroes';
+  getHeroesApi = 'http://localhost:3000/heroes/api';
+  postHeroApi = 'http://localhost:3000/heroes/api';
   deleteHeroApi = 'http://localhost:3000/heroes/delete';
 
   httpHeaders = new HttpHeaders({
@@ -26,8 +26,11 @@ export class ConfigService {
   // GET method
   getHeroes() {
     return this.http.get<MyHero[]>(
-      this.heroesApi,
-      { observe: 'response' }
+      this.getHeroesApi,
+      {
+        observe: 'response',
+        params: { model: 'hero' }
+      }
     ).pipe(
       retry(3),
       catchError(this.handleError),
@@ -44,8 +47,11 @@ export class ConfigService {
     return this.http.post<MyHero>(
       this.postHeroApi,
       hero,
-      { headers: this.httpHeaders,
-        observe: 'response' })
+      {
+        headers: this.httpHeaders,
+        observe: 'response',
+        params: { model: 'hero' }
+      })
       .pipe(
         retry(3),
         catchError(this.handleError),
@@ -59,7 +65,7 @@ export class ConfigService {
 
   // DELETE method
   deleteHero(id: number) {
-    const url = `${this.heroesApi}/${id}`;
+    const url = `${this.getHeroesApi}/${id}`;
     return this.http.delete(this.deleteHeroApi, { headers: this.httpHeaders, observe: 'response' })
       .pipe(
         catchError(this.handleError)
@@ -74,6 +80,7 @@ export class ConfigService {
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
+      console.error(error.error);
     }
     return throwError('Something bad happened; please try again later.');
   }
