@@ -29,7 +29,7 @@ export class HttpClientComponent implements OnInit {
   clickPostHero() {
     this.configService.postHero(this.hero)
       .subscribe(
-        resp => this.hero = resp.body
+        // resp => this.hero = resp.body
       );
   }
 

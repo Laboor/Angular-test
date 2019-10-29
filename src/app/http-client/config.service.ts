@@ -16,7 +16,7 @@ export class ConfigService {
   configUrl = 'assets/config.json';
   getHeroesApi = 'http://localhost:3000/heroes/api';
   postHeroApi = 'http://localhost:3000/heroes/api';
-  deleteHeroApi = 'http://localhost:3000/heroes/delete';
+  deleteHeroApi = 'http://localhost:3000/heroes/api';
 
   httpHeaders = new HttpHeaders({
     // 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -80,7 +80,7 @@ export class ConfigService {
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
-      console.error(error.error);
+      // console.error(error.error);
     }
     return throwError('Something bad happened; please try again later.');
   }
