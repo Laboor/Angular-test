@@ -9,14 +9,66 @@
         // }
         // let generator = myFunc();
         function onClick() {
-            fetch('http://localhost:3000/heroes/api/get?model=hero', {
-                method: 'GET'
-            }).then(response => response.json())
-            .then(res => console.log(res));
+            // fetch('http://localhost:3000/heroes/api/?model=hero', {
+            //     method: 'GET',
+            //     headers: {
+            //         Accept: 'text/plain',
+            //         'Accept-Language': 'zh-CN',
+            //         'Content-Language': 'zh-CN',
+            //         'Content-Type': 'text/plain',
+            //         'Access-Control-Request-Method': 'DELETE, PUT',
+            //         'Access-Control-Request-Headers': 'Content-Type'
+            //     },
+            //     body: undefined,
+            //     referrer: 'http://localhost:4200/http/custom',
+            //     referrerPolicy: 'no-referrer-when-downgrade',
+            //     mode: 'cors',
+            //     keepalive: true
+            // }).then(response => response.json())
+            //     .then(res => console.log(res));
 
-            // let xhr = new XMLHttpRequest();
-            // xhr.open('POST', 'http://localhost:3000/heroes/post');
-            // xhr.send(123);
+            let hero = {
+                id: '5',
+                name: 'john'
+            }
+
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://localhost:3000/heroes');
+            xhr.timeout = 10000; // 设置连接超时，超时时触发ontimeout事件
+            xhr.responseType = 'json' //响应的数据解析成json格式
+
+            xhr.setRequestHeader('Accept', 'text/plain');
+            xhr.setRequestHeader('Accept-Language', 'zh-CN');
+            xhr.setRequestHeader('Content-Language', 'zh-CN');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(hero); // 发送数据
+            // xhr.abort();
+
+            // 接收到响应
+            xhr.onload = function () {
+                console.log(xhr.getAllResponseHeaders());
+                console.log(xhr.status, xhr.statusText, xhr.response);
+            }
+            // 触发错误
+            xhr.onerror = function () {
+                console.log(new Error('error'));
+            }
+            // 进度监听
+            xhr.onprogress = function (event) {
+                console.log(`Received ${event.loaded} of ${event.total}`)
+            }
+            // 超时
+            xhr.ontimeout = function () {
+                console.log(`timeout ${xhr.timeout}`);
+            }
+            // 状态变化监听
+            xhr.onreadystatechange = function () {
+                console.log('state:', xhr.readyState);
+            }
+            // 中止请求监听
+            xhr.onabort = function () {
+                console.log('请求中止！');
+            }
         }
     </script>
 </body>
