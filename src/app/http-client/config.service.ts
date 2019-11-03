@@ -79,7 +79,7 @@ export class ConfigService {
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
-      // console.error(error.error);
+      console.error(error.error);
     }
     return throwError('Something bad happened; please try again later.');
   }
