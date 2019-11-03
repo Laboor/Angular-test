@@ -19,8 +19,6 @@ export class ConfigService {
   deleteHeroApi = 'http://localhost:3000/heroes/api';
 
   httpHeaders = new HttpHeaders({
-    // 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-    'Content-Type': 'application/json'
   });
 
   // GET method
@@ -28,6 +26,7 @@ export class ConfigService {
     return this.http.get<MyHero[]>(
       this.getHeroesApi,
       {
+        headers: this.httpHeaders,
         observe: 'response',
         params: { model: 'hero' }
       }
